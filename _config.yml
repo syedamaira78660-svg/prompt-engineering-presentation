@@ -1,6 +1,6 @@
 title: Practical Prompt Engineering
 description: Presentation resources and guide.
-remote_theme: jekyll-theme-just-the-docs
+remote_theme: MkDocs
 
 # Navigation settings
 nav_sort: choices
