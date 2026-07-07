@@ -1,5 +1,7 @@
 # What is Prompt Engineering? (In Simple Words)
 
-If you strip away all the technical terms, Prompt Engineering is just knowing how to talk to AI to get exactly what you want.
+If you strip away all the technical terms, Prompt Engineering is just knowing how to talk to AI to get exactly what you want[cite: 3].
 
-Think of AI as a brilliant, fresh graduate intern. They know almost everything in the world, but they have zero common sense. If you give them a vague, lazy instruction, they will give you a messy, useless result. Writing a good 'prompt' means giving this intern crystal-clear directions so they deliver perfect work on the very first try.
+Think of AI as an incredibly brilliant, enthusiastic fresh graduate intern. They have access to almost all the world's information, but they are completely new to your specific way of working. If you give them a vague, rushed instruction, they might guess incorrectly and deliver something that misses the mark. 
+
+Writing a good 'prompt' simply means being a great mentor—giving this talented intern crystal-clear, step-by-step guidance so they can deliver perfect work for you on the very first try.
