@@ -5,18 +5,25 @@ nav_order: 1
 permalink: /
 ---
 
-# Practical Prompt Engineering
+# The Art of the AI Whisperer: Why "Prompt Engineering" is the Desi Superpower You Didn't Know You Needed
 
-Welcome to the companion hub for the Prompt Engineering presentation. This site is designed to be a living resource—feel free to copy, paste, and experiment with the frameworks and examples provided below during our session.
+Imagine walking into a *dhaba* or a high-end restaurant in Lahore or Karachi, sitting down, and telling the waiter: 
 
-## 🎯 Objectives of this Session
-* Understand the underlying mechanics of how Large Language Models (LLMs) process instructions.
-* Move from "accidental prompting" to intentional, structured engineering.
-* Master 4 foundational prompting frameworks that reliably improve AI outputs.
+> *"Bhai, kuch khanay ko le ao."* (Brother, bring me something to eat.)
+
+What do you get? Maybe a plate of cold *daal*. Maybe a fiery mutton *karahi*. Maybe just a dry *naan*. Technically, it’s food—but is it what you actually wanted? Probably not.
+
+This is exactly how most of us interact with AI. We drop a vague, two-word English request into ChatGPT, get a generic, textbook-style wall of text in return, and say:
+
+> *"Yar, AI overhyped hai, maza nahi aya."* (AI is overhyped, it's no fun.)
+
+But the problem isn't the AI. It’s the order.
+
+That’s where **Prompt Engineering** comes in. Don't let the heavy, technical name fool you. It isn't computer coding. It is simply the art of knowing exactly how to talk to a machine to get the perfect result on your first try.
 
 ## 🗺️ Navigation
 Use the sidebar to explore the presentation sections:
-1. **[Core Concepts](./core-concepts.md)** - How LLMs think and why formatting matters.
+1. **[What is Prompt Engineering, Really?](./what-is-prompt.md)** - How LLMs think and why formatting matters.
 2. **[Techniques](./techniques.md)** - Zero-shot, Few-shot, and Chain-of-Thought frameworks.
 3. **[Interactive Examples](./examples.md)** - Direct "Before vs. After" prompt breakdowns.
 4. **[Resources](./resources.md)** - Templates, bookmarks, and further reading.
