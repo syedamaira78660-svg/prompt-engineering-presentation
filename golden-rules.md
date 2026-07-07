@@ -19,3 +19,25 @@ Tell the AI exactly what not to do.
 ### 4. Choose the Layout (Format)
 Don't let the AI dump a massive wall of text on you. Demand structure.
 * **Good:** "Present your answer as a short Instagram caption, followed by a bulleted list of 5 relevant hashtags at the bottom."
+
+# Lazy Prompt vs. Smart Prompt
+
+When it comes to AI, the quality of your input entirely dictates the quality of your output. Here is a direct contrast showing how a small shift in your phrasing changes everything.
+
+---
+
+## ❌ The Lazy Prompt
+
+> "Write a social media post about freelancing."
+
+### The Result
+A boring, textbook-style essay on the global gig economy that will put your audience to sleep.
+
+---
+
+##  The Smart Prompt
+
+> "Act as a successful Pakistani freelancer on Upwork. Write a LinkedIn post for youngsters who are struggling to get their first client. Give them 3 practical, honest tips that actually work in our local market."
+
+### The Result
+A sharp, highly relatable post that feels like it was written by an experienced mentor who genuinely wants to help.
