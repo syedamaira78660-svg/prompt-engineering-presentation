@@ -24,6 +24,7 @@ That’s where **Prompt Engineering** comes in. Don't let the heavy, technical n
 ## 🗺️ Navigation
 Use the sidebar to explore the presentation sections:
 1. **[What is Prompt Engineering, Really?](./what-is-prompt.md)**
-2. **[Techniques](./techniques.md)** - Zero-shot, Few-shot, and Chain-of-Thought frameworks.
-3. **[Interactive Examples](./examples.md)** - Direct "Before vs. After" prompt breakdowns.
-4. **[Resources](./resources.md)** - Templates, bookmarks, and further reading.
+2. **[The 4 Golden Rules]](./golden-rules.md)**
+3. **[Techniques](./techniques.md)** - Zero-shot, Few-shot, and Chain-of-Thought frameworks.
+4. **[Interactive Examples](./examples.md)** - Direct "Before vs. After" prompt breakdowns.
+5. **[Resources](./resources.md)** - Templates, bookmarks, and further reading.
