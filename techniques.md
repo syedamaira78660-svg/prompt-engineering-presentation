@@ -22,8 +22,7 @@ Asking the model to perform a task without giving it any examples. Ideal for sim
 ## 3. One-shot Prompting
 One-Shot Prompting is an AI prompting technique where you provide the model with exactly one concrete example of the desired output before asking it to complete a task. Instead of just telling the AI what to do, you show it a single blueprint of the exact tone, structure, or logic you want. This bridges the gap between abstract instructions and your actual expectations, drastically improving the accuracy and formatting of the model's response on the very first try.
 
-```a senior workplace productivity coach with over 10 years of experience helping remote employees and freelancers improve their work habits. Your writing style is friendly, motivational, and easy to understand. Write engaging blog introductions that encourage readers to continue reading.
-
+```"Act as a  senior workplace productivity coach with over 10 years of experience helping remote employees and freelancers improve their work habits. Your writing style is friendly, motivational, and easy to understand. Write engaging blog introductions that encourage readers to continue reading.
 Example:
 
 Input:
@@ -34,4 +33,4 @@ Good habits benefit our physical, emotional, spiritual, and mental health. These
 
 Now write an introduction for the following topic:
 
-Topic: Remote Work Habits```
+Topic: Remote Work Habits"```
