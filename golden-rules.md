@@ -2,6 +2,8 @@
 
 To get elite-level work out of AI, just follow these four simple steps:
 
+![golden rules](golden-rules.png)
+
 ### 1. Give It a Role (Persona)
 Tell the AI who it needs to be before it starts writing.
 * **Bad:** "Write a workout plan."
