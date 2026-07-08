@@ -37,6 +37,6 @@ Output:
 Good habits benefit our physical, emotional, spiritual, and mental health. These are the habits that bring you closer to living your best life. They help you become more productive, energetic, and resilient while improving your overall well-being. Whether it's exercising regularly, managing your time effectively, or maintaining a positive mindset, small daily habits can create lasting positive change. If you're unsure where to begin, read on to discover eight simple habits that can help you build a healthier and more successful life.
 
 Now write an introduction for the following topic:
-```
+
 Topic: Remote Work Habits"
 ```
