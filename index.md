@@ -26,6 +26,7 @@ Use the sidebar to explore the presentation sections:
 1. **[What is Prompt Engineering, Really?](./what-is-prompt.md)**
 2. **[Token Limits and Context Windows](./token-context-window.md)**
 3. **[The 5 Golden Rules](./golden-rules.md)**
-4. **[Techniques](./techniques.md)** - Zero-shot, Few-shot, and Chain-of-Thought frameworks.
-5. **[Interactive Examples](./examples.md)** - Direct "Before vs. After" prompt breakdowns.
-6. **[Resources](./resources.md)** - Templates, bookmarks, and further reading.
+4. **[Techniques](./techniques.md)**
+5. **[Context Placement in Prompt Engineering](./context-placement.md)**
+6. **[Interactive Examples](./examples.md)** - Direct "Before vs. After" prompt breakdowns.
+7. **[Resources](./resources.md)** - Templates, bookmarks, and further reading.
