@@ -7,16 +7,16 @@ nav_order: 3
 
 Standard prompting is the simplest way to interact with an AI model.
 
-**Example 1 -- Writing**
-
 ``` text
-Write a blog about remote work habits.
-```
+Create a prompt library application that lets users save and delete prompts.
 
-**Example 2 -- Software Development**
+Users should be able to:
+- Enter a title and content for their prompt
+- Save it to localStorage
+- See all their saved prompts displayed on the page
+- Delete prompts they no longer need
 
-``` text
-Create a web application using HTML, CSS, and JavaScript that allows users to add prompts, save them, and view the saved prompts.
+Make it look clean and professional with HTML, CSS, and JavaScript.
 ```
 
 ------------------------------------------------------------------------
@@ -25,93 +25,96 @@ Create a web application using HTML, CSS, and JavaScript that allows users to ad
 
 Zero-shot prompting provides detailed instructions without examples.
 
-**Example 1 -- Writing**
+``` test
+Create a prompt library application in HTML, CSS, and JavaScript.
 
-``` text
-Act as a witty, casual blog writer.
+Create an HTML page with a form containing fields for the prompt title and content
 
-Write an 800-word blog post on "Remote Work Habits" specifically for Gen Z professionals who struggle with work-life balance.
+Add a save prompt button that saves to localStorage
 
-Requirements:
-- Conversational tone
-- Practical tips
-- Headings
-- Bullet points
-- Motivating conclusion
+Display saved prompts in cards
+
+Each prompt card should show the title, a content preview of a few words, and a delete button
+
+Deleting should remove the prompt from localStorage and update the display
+
+Style it with CSS to look clean and modern with a developer theme
+
+Include all HTML structure, CSS styling, and JavaScript functionality in their own files, but that can be run immediately and includes no other features.
 ```
-
-**Example 2 -- Software Development**
-
-``` text
-Act as a senior frontend developer.
-
-Create a responsive Prompt Manager web application using HTML, CSS, and JavaScript.
-
-Requirements:
-- Modern dashboard UI
-- Add Prompt form (Title, Category, Prompt)
-- Save using Local Storage
-- Display prompt cards
-- Search by title
-- Filter by category
-- Edit/Delete prompts
-- Responsive design
-- Vanilla HTML, CSS and JavaScript only
-```
-
 ------------------------------------------------------------------------
 
 ### 3. One-Shot Prompting
 
 Provide exactly one example before the actual task.
+Note:
 
-**Example 1 -- Writing**
-
-``` text
-Example
-
-Input:
-Topic: Healthy Habits
-
-Output:
-Good habits improve every aspect of your life...
-
-Now write an introduction for:
-Topic: Remote Work Habits
-```
-
-**Example 2 -- Software Development**
+choose your example carefully because it sets the pattern
+make your example the majority representative, don't pick an edge case
+include all elements you want in your output
+combine with explicit instructions for any additionally needed clarity
+don't overcomplicate your example to cover every case, the model will generalize that pattern
 
 ``` text
-Act as a senior frontend developer.
+Write an engaging introduction for a blog post about remote work productivity.
 
-Example
+Example:
+Topic: Benefits of morning exercise
+Introduction: "Picture this: It's 6 AM, your alarm goes off, and instead of hitting snooze, you lace up your sneakers. Sound impossible? Here's the thing—those who exercise before breakfast report 23% higher energy levels throughout their workday. But the real secret isn't just the exercise itself; it's what happens to your brain chemistry in those precious morning hours."
 
-Input:
-Build a simple To-Do List application.
-
-Output:
-Features:
-- Add tasks
-- Delete tasks
-- Mark completed
-- Local Storage
-- Responsive UI
-
-Now build:
-
-Input:
-Prompt Manager
-
-Requirements:
-- Add prompts
-- Save prompts
-- Rate prompts (1–5 stars)
-- Search
-- Edit
-- Delete
-- Responsive interface
+Now write an introduction for: Remote work productivity tips
 ```
+Something we can add to our prompt library is a rating feature, with stars from 1-5. Here is an example of a one-shot prompt to get the model to design that new feature:
+
+Note: you will likely need to prompt the model again to build the feature after sending this prompt. This prompt uses an example to help the model "architect" this feature. Go through what it wants to build, prompt to make any adjustments you see fit, and then prompt the model to "build this feature" (or however you want to word it!)
+
+``` text
+You are helping develop a prompt library application. Here's an example of how to analyze and implement a new feature:
+
+**EXAMPLE:** Feature Request: "Add a favorites/bookmarking system"
+
+Implementation Plan:
+
+1. **User Story**: As a user, I want to mark prompts as favorites so I can quickly access my most-used prompts without scrolling through the entire library.
+2. **Technical Requirements**:
+    - Add a heart/bookmark icon to each prompt card
+    - Store favorite status in localStorage or database
+    - Create a filter to show only favorited prompts
+    - Visual indicator when a prompt is favorited (filled vs outlined icon)
+3. **Code Structure**:
+
+javascript
+// Data model update
+prompt = {
+  id: 'prompt-123',
+  title: 'Marketing Email Generator',
+  content: '...',
+  isFavorite: false,  // New field
+  createdAt: '2024-01-15',
+  rating: 4.5
+}
+
+// Toggle favorite function
+function toggleFavorite(promptId) {
+  const prompt = prompts.find(p => p.id === promptId);
+  prompt.isFavorite = !prompt.isFavorite;
+  saveToStorage(prompts);
+  updateUI();
+}
+
+4. **UI/UX Considerations**:
+    - Place favorite icon in consistent location (top-right of card)
+    - Use intuitive icons (heart or star)
+    - Provide visual feedback on click (animation/color change)
+    - Add "Favorites" filter tab in navigation
+
+---
+
+**YOUR TASK:** Analyze the following feature request using the EXACT same format as the example above (User Story, Technical Requirements with bullet points, Code Structure with JavaScript examples, and UI/UX Considerations).
+
+Feature Request: "Add a 5-star rating component to rate prompt effectiveness"
+```
+
 
 ------------------------------------------------------------------------
 
@@ -119,70 +122,81 @@ Requirements:
 
 Provide multiple examples so the model learns the desired pattern.
 
-**Example 1 -- Writing**
+Note:
+
+diversity in examples matters
+include edge cases and failure cases
+keep examples concise but complete
+test in a few different chats with a few different number of examples to find what works best
 
 ``` text
-Example 1
-Input: Healthy Habits
-Output: Introduction...
+I need you to create a prompt for implementing a new feature. Here are examples of effective feature implementation prompts:
 
-Example 2
-Input: Time Management
-Output: Introduction...
+**EXAMPLE 1: Save/Delete Functionality Prompt**
+Create a save and delete system for a prompt library application with the following requirements:
 
-Now write an introduction for:
-Topic: Remote Work Habits
+Technical Specifications:
+- Save button that persists prompts to localStorage
+- Delete button with confirmation dialog before removal
+- Visual feedback on successful save (green checkmark animation)
+- Trash icon with hover effect for delete action
+- Auto-save indicator when changes are detected
+
+Provide complete HTML, CSS, and JavaScript with:
+1. Semantic HTML with data attributes for prompt IDs
+2. CSS animations for save confirmation and delete hover states
+3. JavaScript with proper event delegation for dynamically added prompts
+4. localStorage integration with JSON serialization
+
+The system should work with this data structure:
+const prompts = [
+  { id: 'prompt-001', title: "Blog Writer", content: "Generate blog posts...", savedAt: Date.now() }
+];
+
+Include error handling for localStorage quota exceeded and implement a "Recently Deleted" temporary storage (up to 5 items).
+
+**EXAMPLE 2: Star Rating Component Prompt**
+Build a 5-star rating system for rating prompt effectiveness with these specifications:
+
+Core Requirements:
+- Interactive 5-star display (click to rate, hover to preview)
+- Half-star precision (4.5 stars possible)
+- Shows average rating and total number of ratings
+- Updates immediately without page refresh
+- Allows users to change their rating
+
+Implementation Details:
+- SVG stars for crisp display at any size
+- Gold fill for rated, gray outline for unrated
+- Smooth hover animations (scale and glow effect)
+- Display format: "4.5 ★ (23 ratings)"
+
+Deliver production-ready code including:
+1. HTML with accessible ARIA labels for screen readers
+2. CSS with star animations and responsive sizing
+3. JavaScript for rating logic and state management
+4. Comments explaining calculation methods
+
+Data model to support:
+{
+  promptId: 'prompt-001',
+  ratings: [5, 4, 5, 3, 5], // Array of all ratings
+  userRating: 4, // Current user's rating
+  averageRating: 4.4
+}
+
+**YOUR TASK:** Based on the examples above, create a detailed prompt for building a "notes section" feature where users can add, edit, save, and delete notes for each prompt in the library.
+
+The prompt should follow the pattern shown in the examples:
+
+- Clear feature description
+- Specific technical requirements
+- Implementation details
+- Expected deliverables
+- Data structure/integration notes
+
+Keep it as simple as possible to create a working notes section with only the features mentioned in your task.
 ```
-
-**Example 2 -- Software Development**
-
-``` text
-Act as a senior frontend developer.
-
-Example 1
-
-Input:
-To-Do List
-
-Output:
-Features:
-- Add tasks
-- Delete tasks
-- Complete tasks
-- Local Storage
-
-Example 2
-
-Input:
-Expense Tracker
-
-Output:
-Features:
-- Add expenses
-- Categories
-- Charts
-- Local Storage
-
-Now build:
-
-Input:
-Prompt Manager
-
-Requirements:
-- Add prompts
-- Save prompts
-- Categories
-- Search
-- Sort
-- Edit
-- Delete
-- Favorite prompts
-- 5-star ratings
-- Copy to clipboard
-- Export JSON
-- Responsive UI
-```
-
 ## Comparison
 
   Technique   Examples   Best For
