@@ -2,23 +2,25 @@
 
 ## Overview
 
-The effectiveness of a prompt depends not only on **what information is provided**, but also **where that information is placed**. Research has shown that Large Language Models (LLMs) do not treat every part of a long prompt equally. Instead, they exhibit a positional bias, giving more attention to information located at the **beginning** and **end** of the prompt while often overlooking information in the **middle**.
+The effectiveness of a prompt depends not only on **what information you provide**, but also **where you place it**. Research has shown that Large Language Models (LLMs) do not treat every part of a long prompt equally. Instead, they often exhibit a **positional bias**, giving greater attention to information near the **beginning** and **end** of a prompt while being less effective at using information buried in the **middle**.
 
-This behavior is commonly referred to as the **"Lost in the Middle"** phenomenon.
+This behavior is commonly known as the **"Lost in the Middle"** phenomenon.
 
 ---
 
 ## Key Insight
 
-> **The position of important information within a prompt significantly affects an LLM's ability to retrieve, retain, and use that information.**
+> **The position of important information within a prompt can significantly affect an LLM's ability to retrieve, retain, and use that information.**
 
-Models generally perform best when important information is placed at the beginning of the prompt, followed by the end, while performance drops when the same information is placed in the middle.
+In many current LLMs, important information is typically used most effectively when it appears near the beginning of the prompt, followed by the end. Information placed in the middle of long prompts is more likely to be overlooked.
 
-**Information Retention Order:**
+**Typical Information Retention Pattern**
 
 ```text
 Beginning > End > Middle
 ```
+
+> **Note:** This is a general trend observed in many modern LLMs—not an absolute rule. Performance varies depending on the model, prompt design, and task.
 
 ---
 
@@ -28,26 +30,27 @@ The paper **"Lost in the Middle: How Language Models Use Long Contexts" (Liu et 
 
 ### Key Findings
 
-- Information placed at the **beginning** of the prompt is retrieved most accurately.
-- Information placed at the **end** of the prompt is also recalled effectively due to its recency.
-- Information buried in the **middle** of long prompts is significantly more likely to be ignored or forgotten.
-- Increasing the context window (e.g., 32K, 100K, or more tokens) does **not** guarantee that the model will effectively utilize information throughout the entire context.
-- Longer prompts can actually reduce retrieval accuracy if important information is poorly positioned.
+- Information placed at the **beginning** of a prompt was retrieved most accurately.
+- Information placed at the **end** of a prompt also achieved strong retrieval performance due to recency.
+- Information located in the **middle** of long prompts was significantly more likely to be overlooked.
+- Simply increasing the context window (for example, 32K, 100K, or more tokens) does **not** guarantee that the model will effectively use information throughout the entire context.
+- Longer prompts can reduce retrieval accuracy when important information is poorly positioned or surrounded by irrelevant content.
 
 ---
 
 ## Why Does This Matter?
 
-When prompts become long due to conversation history, retrieved documents, code, or large datasets, critical instructions can become less effective if they are hidden in the middle.
+Modern AI applications often use long prompts containing conversation history, retrieved documents, code, or datasets. If important instructions or facts are buried in the middle of this context, the model may not use them effectively.
 
-Poor context placement may result in:
+Poor context placement can lead to:
+
 - Ignoring important instructions
 - Missing relevant information
-- Incorrect or incomplete responses
-- Reduced reasoning accuracy
-- Hallucinations caused by overlooking supporting facts
+- Incomplete or incorrect responses
+- Reduced reasoning quality
+- Hallucinations caused by overlooked supporting evidence
 
-Proper context placement helps improve response quality without changing the model itself.
+Organizing prompts effectively can improve response quality without changing the model itself.
 
 ---
 
@@ -55,9 +58,9 @@ Proper context placement helps improve response quality without changing the mod
 
 ### ✅ Place Primary Instructions First
 
-The first part of the prompt should clearly state the main objective.
+Clearly state the main objective at the beginning of the prompt.
 
-**Example**
+**Good**
 
 ```text
 Summarize the following research paper.
@@ -65,7 +68,7 @@ Summarize the following research paper.
 <Research Paper Content>
 ```
 
-Instead of:
+**Less Effective**
 
 ```text
 <Research Paper Content>
@@ -77,9 +80,9 @@ Summarize the paper.
 
 ### ✅ Put Important Context Near the Beginning
 
-Provide the most relevant facts, constraints, or reference information before lengthy supporting material.
+Present the most relevant facts, constraints, or reference information before lengthy supporting material.
 
-Example:
+**Example**
 
 ```text
 Role:
@@ -94,11 +97,11 @@ Reference Material:
 
 ---
 
-### ✅ Reinforce Important Constraints at the End
+### ✅ Reinforce Critical Constraints Near the End
 
-If the prompt is very long, repeat critical constraints near the end.
+For long prompts, repeat important formatting or behavioral requirements near the end.
 
-Example:
+**Example**
 
 ```text
 Remember:
@@ -106,7 +109,7 @@ Remember:
 - Do not include explanations.
 ```
 
-This helps ensure important formatting or behavioral requirements remain prominent.
+This helps keep critical instructions prominent even after processing a large amount of context.
 
 ---
 
@@ -114,7 +117,7 @@ This helps ensure important formatting or behavioral requirements remain promine
 
 In Retrieval-Augmented Generation (RAG), arrange retrieved documents strategically.
 
-Preferred order:
+**Recommended order**
 
 ```text
 Most Relevant Document
@@ -122,13 +125,13 @@ Supporting Document
 Additional Context
 ```
 
-Avoid placing the most relevant document in the middle of many less relevant ones.
+Avoid placing the most relevant document in the middle of numerous less relevant documents whenever possible.
 
 ---
 
 ### ✅ Keep Prompts Focused
 
-Avoid adding unnecessary context simply because the model supports a large context window.
+Avoid including unnecessary context simply because the model supports a large context window.
 
 A shorter, well-structured prompt is often more effective than a longer, cluttered one.
 
@@ -138,13 +141,13 @@ A shorter, well-structured prompt is often more effective than a longer, clutter
 
 ### Chatbots
 
-- Keep system instructions at the beginning.
-- Reinforce important behavioral rules when conversations become lengthy.
+- Place system instructions at the beginning.
+- Reinforce important behavioral rules during long conversations.
 
 ### Retrieval-Augmented Generation (RAG)
 
 - Rank retrieved documents by relevance.
-- Place the most useful documents first (or occasionally last).
+- Place the most relevant documents first (or, depending on the workflow, reinforce key information near the end).
 
 ### Document Question Answering
 
@@ -152,7 +155,7 @@ A shorter, well-structured prompt is often more effective than a longer, clutter
 
 ### Code Generation
 
-- Put coding requirements and constraints before large code snippets.
+- Place coding requirements and constraints before large code snippets.
 
 ### Summarization
 
@@ -160,10 +163,10 @@ A shorter, well-structured prompt is often more effective than a longer, clutter
 
 ---
 
-## Prompt Structure Recommendation
+## Recommended Prompt Structure
 
 ```text
-1. System Role / Objective
+1. System Role or Objective
 2. Primary Instructions
 3. Important Context
 4. Supporting Information
@@ -171,22 +174,22 @@ A shorter, well-structured prompt is often more effective than a longer, clutter
 6. Final Reminder or Constraints
 ```
 
-This structure aligns with how current LLMs tend to process long prompts.
+This structure aligns well with how many current LLMs process long prompts.
 
 ---
 
 ## Key Takeaways
 
-- The location of information inside a prompt significantly impacts model performance.
-- LLMs generally retrieve information more effectively from the beginning and end of long prompts.
-- Avoid placing essential instructions or facts in the middle of long contexts.
-- Organize prompts so that the most important information appears first, with final constraints reinforced at the end.
-- Longer context windows do not guarantee better information retrieval—effective prompt organization remains essential.
+- The position of information within a prompt can significantly influence model performance.
+- Many LLMs retrieve information more effectively from the beginning and end of long prompts than from the middle.
+- Avoid burying critical instructions or key facts within lengthy contexts.
+- Organize prompts so that essential information appears early, and reinforce important constraints near the end when appropriate.
+- Larger context windows increase capacity but do not guarantee that every part of the prompt receives equal attention.
 
 ---
 
 ## Reference
 
-Liu, N. F., et al. (2023). **Lost in the Middle: How Language Models Use Long Contexts.** arXiv:2307.03172.
+Liu, N. F., et al. (2023). **Lost in the Middle: How Language Models Use Long Contexts.**
 
 **Paper:** https://arxiv.org/abs/2307.03172
