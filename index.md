@@ -23,9 +23,9 @@ That’s where **Prompt Engineering** comes in. Don't let the heavy, technical n
 
 ## 🗺️ Navigation
 Use the sidebar to explore the presentation sections:
-1. **[What is Prompt Engineering, Really?](./what-is-prompt.md)**2.
-3.  **[Token Limits and Context Windows](./token-context-window.md)**
-4.   **[The 5 Golden Rules](./golden-rules.md)**
-5. **[Techniques](./techniques.md)** - Zero-shot, Few-shot, and Chain-of-Thought frameworks.
-6. **[Interactive Examples](./examples.md)** - Direct "Before vs. After" prompt breakdowns.
-7. **[Resources](./resources.md)** - Templates, bookmarks, and further reading.
+1. **[What is Prompt Engineering, Really?](./what-is-prompt.md)**
+2. **[Token Limits and Context Windows](./token-context-window.md)**
+3. **[The 5 Golden Rules](./golden-rules.md)**
+4. **[Techniques](./techniques.md)** - Zero-shot, Few-shot, and Chain-of-Thought frameworks.
+5. **[Interactive Examples](./examples.md)** - Direct "Before vs. After" prompt breakdowns.
+6. **[Resources](./resources.md)** - Templates, bookmarks, and further reading.
