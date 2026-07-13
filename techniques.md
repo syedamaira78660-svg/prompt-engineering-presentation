@@ -3,40 +3,195 @@ layout: default
 title: 2. Prompting Techniques
 nav_order: 3
 ---
+### 1. Standard Prompting
 
-# Prompting Techniques
+Standard prompting is the simplest way to interact with an AI model.
 
-## 1. Standard Prompting
-Asking a model to perform a task without adding any constraints like audience, tone, length, or structure.
+**Example 1 -- Writing**
 
-```text
-"Act as a blog writer and write me a blog on 'remote work habits'."
+``` text
+Write a blog about remote work habits.
 ```
 
+**Example 2 -- Software Development**
 
-Slide away from basic questions and master these proven structural frameworks.
-
-## 2. Zero-Shot Prompting
-Asking the model to perform a task without giving it any examples. Ideal for simple tasks or highly capable models.
-
-```text
-Act as a witty, casual blog writer. Write an 800-word blog post on 'remote work habits' specifically tailored for Gen Z professionals who struggle with work-life balance. Use a conversational tone, include actionable bullet points, and use a heading structure.
+``` text
+Create a web application using HTML, CSS, and JavaScript that allows users to add prompts, save them, and view the saved prompts.
 ```
 
-## 3. One-shot Prompting
-One-Shot Prompting is an AI prompting technique where you provide the model with exactly one concrete example of the desired output before asking it to complete a task. Instead of just telling the AI what to do, you show it a single blueprint of the exact tone, structure, or logic you want. This bridges the gap between abstract instructions and your actual expectations, drastically improving the accuracy and formatting of the model's response on the very first try.
+------------------------------------------------------------------------
 
-```text
-Act as a  senior workplace productivity coach with over 10 years of experience helping remote employees and freelancers improve their work habits. Your writing style is friendly, motivational, and easy to understand. Write engaging blog introductions that encourage readers to continue reading.
-Example:
+### 2. Zero-Shot Prompting
+
+Zero-shot prompting provides detailed instructions without examples.
+
+**Example 1 -- Writing**
+
+``` text
+Act as a witty, casual blog writer.
+
+Write an 800-word blog post on "Remote Work Habits" specifically for Gen Z professionals who struggle with work-life balance.
+
+Requirements:
+- Conversational tone
+- Practical tips
+- Headings
+- Bullet points
+- Motivating conclusion
+```
+
+**Example 2 -- Software Development**
+
+``` text
+Act as a senior frontend developer.
+
+Create a responsive Prompt Manager web application using HTML, CSS, and JavaScript.
+
+Requirements:
+- Modern dashboard UI
+- Add Prompt form (Title, Category, Prompt)
+- Save using Local Storage
+- Display prompt cards
+- Search by title
+- Filter by category
+- Edit/Delete prompts
+- Responsive design
+- Vanilla HTML, CSS and JavaScript only
+```
+
+------------------------------------------------------------------------
+
+### 3. One-Shot Prompting
+
+Provide exactly one example before the actual task.
+
+**Example 1 -- Writing**
+
+``` text
+Example
 
 Input:
-Topic: Healthy Habits: 8 Good Habits to Have in Life
+Topic: Healthy Habits
 
 Output:
-Good habits benefit our physical, emotional, spiritual, and mental health. These are the habits that bring you closer to living your best life. They help you become more productive, energetic, and resilient while improving your overall well-being. Whether it's exercising regularly, managing your time effectively, or maintaining a positive mindset, small daily habits can create lasting positive change. If you're unsure where to begin, read on to discover eight simple habits that can help you build a healthier and more successful life.
+Good habits improve every aspect of your life...
 
-Now write an introduction for the following topic:
-
-Topic: Remote Work Habits"
+Now write an introduction for:
+Topic: Remote Work Habits
 ```
+
+**Example 2 -- Software Development**
+
+``` text
+Act as a senior frontend developer.
+
+Example
+
+Input:
+Build a simple To-Do List application.
+
+Output:
+Features:
+- Add tasks
+- Delete tasks
+- Mark completed
+- Local Storage
+- Responsive UI
+
+Now build:
+
+Input:
+Prompt Manager
+
+Requirements:
+- Add prompts
+- Save prompts
+- Rate prompts (1–5 stars)
+- Search
+- Edit
+- Delete
+- Responsive interface
+```
+
+------------------------------------------------------------------------
+
+### 4. Few-Shot Prompting
+
+Provide multiple examples so the model learns the desired pattern.
+
+**Example 1 -- Writing**
+
+``` text
+Example 1
+Input: Healthy Habits
+Output: Introduction...
+
+Example 2
+Input: Time Management
+Output: Introduction...
+
+Now write an introduction for:
+Topic: Remote Work Habits
+```
+
+**Example 2 -- Software Development**
+
+``` text
+Act as a senior frontend developer.
+
+Example 1
+
+Input:
+To-Do List
+
+Output:
+Features:
+- Add tasks
+- Delete tasks
+- Complete tasks
+- Local Storage
+
+Example 2
+
+Input:
+Expense Tracker
+
+Output:
+Features:
+- Add expenses
+- Categories
+- Charts
+- Local Storage
+
+Now build:
+
+Input:
+Prompt Manager
+
+Requirements:
+- Add prompts
+- Save prompts
+- Categories
+- Search
+- Sort
+- Edit
+- Delete
+- Favorite prompts
+- 5-star ratings
+- Copy to clipboard
+- Export JSON
+- Responsive UI
+```
+
+## Comparison
+
+  Technique   Examples   Best For
+  ----------- ---------- -------------------------------
+  Standard    None       Quick/simple tasks
+  Zero-Shot   None       Detailed instructions
+  One-Shot    One        Matching a style or structure
+  Few-Shot    Multiple   Complex, consistent outputs
+
+> **Tip:** Notice how the same "Prompt Manager" application becomes
+> increasingly complete and consistent as more guidance and examples are
+> provided.
