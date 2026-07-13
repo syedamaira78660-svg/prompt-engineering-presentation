@@ -1,45 +1,203 @@
-# The 4 Golden Rules
+---
+layout: default
+title: The 5 Golden Rules of Prompt Engineering
+nav_order: 4
+---
 
-To get elite-level work out of AI, just follow these four simple steps:
+# The 5 Golden Rules of Prompt Engineering
 
-![golden rules](golden-rules.png)
+To consistently get high-quality responses from AI, every prompt should include **five essential components**. These components help the AI understand your intent, reduce ambiguity, and produce more accurate, relevant, and well-structured responses.
 
-### 1. Give It a Role (Persona)
-Tell the AI who it needs to be before it starts writing.
-* **Bad:** "Write a workout plan."
-* **Good:** "Act as a top fitness trainer in Pakistan who creates practical 20-minute home workout plans for people who regularly eat heavy local food like roti and salaan."
+## The Prompt Formula
 
-### 2. Share the Backstory (Context)
-The AI cannot read your mind. Give it the real-world details.
-* **Bad:** "Give me marketing ideas."
-* **Good:** "I am launching a small, home-based burger joint in Gulshan, Karachi. My target audience is university students looking for affordable, late-night food."
-
-### 3. Set the Boundaries (Constraints)
-Tell the AI exactly what not to do.
-* **Good:** "Do not use overly formal English. Keep the tone warm and conversational—using simple words or local terms is fine. Do not suggest anything that costs a lot of money."
-
-### 4. Choose the Layout (Format)
-Don't let the AI dump a massive wall of text on you. Demand structure.
-* **Good:** "Present your answer as a short Instagram caption, followed by a bulleted list of 5 relevant hashtags at the bottom."
-
-# Lazy Prompt vs. Smart Prompt
-
-When it comes to AI, the quality of your input entirely dictates the quality of your output. Here is a direct contrast showing how a small shift in your phrasing changes everything.
+```text
+Role + Task + Context + Constraints + Output Format
+```
 
 ---
 
-## ❌ The Lazy Prompt
+# Rule 1: Role 👤
 
-> "Write a social media post about freelancing."
+## Tell AI Who It Should Become
 
-### The Result
-A boring, textbook-style essay on the global gig economy that will put your audience to sleep.
+A **role** defines the AI's expertise, perspective, and communication style before it begins the task.
+
+Assigning a role helps AI respond like the right expert instead of giving a generic answer.
+
+### Why it matters
+
+- Produces responses from the right perspective
+- Adjusts tone and expertise
+- Makes answers more relevant
+
+### Example
+
+```text
+Act as an experienced career coach who helps university students prepare for software engineering jobs.
+```
+
+> At this stage, AI knows **who it is**, but not **what it should do**.
 
 ---
 
-##  The Smart Prompt
+# Rule 2: Task 🎯
 
-> "Act as a successful Pakistani freelancer on Upwork. Write a LinkedIn post for youngsters who are struggling to get their first client. Give them 3 practical, honest tips that actually work in our local market."
+## Tell AI What You Want
 
-### The Result
-A sharp, highly relatable post that feels like it was written by an experienced mentor who genuinely wants to help.
+The **task** clearly defines what you want the AI to accomplish.
+
+Without a task, AI has to guess your objective.
+
+### Why it matters
+
+- Gives AI a clear goal
+- Reduces misunderstanding
+- Produces focused responses
+
+### Example
+
+```text
+Act as an experienced career coach who helps university students prepare for software engineering jobs.
+
+Help me prepare for my first software engineering interview.
+```
+
+> Now AI knows **who it is** and **what it should do**.
+
+---
+
+# Rule 3: Context 📖
+
+## Give AI the Background
+
+**Context** provides the information AI needs to understand your situation.
+
+The more relevant context you provide, the better AI can personalize its response.
+
+### Why it matters
+
+- Makes responses more relevant
+- Reduces assumptions
+- Improves accuracy
+
+### Example
+
+```text
+Act as an experienced career coach who helps university students prepare for software engineering jobs.
+
+Help me prepare for my first software engineering interview.
+
+I know basic Python programming but have never attended a technical interview before.
+```
+
+> Now AI understands the situation and can tailor its advice.
+
+---
+
+# Rule 4: Constraints 📏
+
+## Tell AI the Rules
+
+**Constraints** specify the requirements and limitations that AI must follow while completing the task.
+
+### Examples of Constraints
+
+- Use simple English.
+- Keep the answer under 500 words.
+- Avoid unnecessary theory.
+- Include practical advice.
+
+### Why it matters
+
+- Keeps responses focused
+- Prevents unwanted output
+- Saves editing time
+
+### Example
+
+```text
+Act as an experienced career coach who helps university students prepare for software engineering jobs.
+
+Help me prepare for my first software engineering interview.
+
+I know basic Python programming but have never attended a technical interview before.
+
+Use simple English.
+Keep the answer under 500 words.
+Avoid unnecessary theory.
+Include practical advice.
+```
+
+> AI now knows both **what to do** and **how to do it**.
+
+---
+
+# Rule 5: Output Format 📄
+
+## Tell AI How to Present the Response
+
+The **output format** tells AI how to organize and structure the final answer.
+
+### Common Formats
+
+- Bullet points
+- Table
+- Email
+- Blog post
+- Markdown
+- JSON
+- Checklist
+- Step-by-step guide
+
+### Why it matters
+
+- Improves readability
+- Makes the response easier to use
+- Reduces manual formatting
+
+### Complete Prompt
+
+```text
+Act as an experienced career coach who helps university students prepare for software engineering jobs.
+
+Help me prepare for my first software engineering interview.
+
+I know basic Python programming but have never attended a technical interview before.
+
+Use simple English.
+Keep the answer under 500 words.
+Avoid unnecessary theory.
+Include practical advice.
+
+Present the response as:
+1. Interview preparation checklist
+2. Common interview questions
+3. A one-week study plan
+4. Key takeaways
+```
+
+> AI now has everything it needs to produce a high-quality response.
+
+---
+
+# Summary
+
+A great prompt answers five simple questions:
+
+| Rule | Question |
+|------|----------|
+| 👤 **Role** | Who should AI become? |
+| 🎯 **Task** | What should AI do? |
+| 📖 **Context** | What background should AI know? |
+| 📏 **Constraints** | What rules should AI follow? |
+| 📄 **Output Format** | How should the response be presented? |
+
+## Remember
+
+```text
+Role + Task + Context + Constraints + Output Format
+        ↓
+     High-Quality Prompt
+```
+
+The clearer your instructions, the better the AI's response.
