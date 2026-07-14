@@ -13,6 +13,8 @@
 <script src="./assets/js/nav-data.js" defer></script>
 <script src="./assets/js/layout.js" defer></script>
 <script src="./assets/js/main.js" defer></script>
+<script src="./assets/js/feedback-config.js" defer></script>
+<script src="./assets/js/feedback.js" defer></script>
 </head>
 <body data-slug="home">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -48,6 +50,44 @@
       </section>
 
       <p class="home-note">New here? Start with <strong>Order 101</strong>. Already know the basics? Jump straight to the <strong>Chef's Formula</strong> or the <strong>Taste Test</strong> for hands-on before/after examples.</p>
+
+      <section class="feedback-section" id="feedback">
+        <div class="menu-heading">
+          <h2>What Readers Are Saying</h2>
+          <p>moderated reviews</p>
+        </div>
+        <div class="feedback-grid" id="feedbackList">
+          <p class="feedback-empty">Loading feedback…</p>
+        </div>
+
+        <div class="feedback-form-wrap">
+          <h3>Leave your feedback</h3>
+          <p class="feedback-form-intro">Found this useful, confusing, or missing something? I read every note.</p>
+          <form class="feedback-form" id="feedbackForm">
+            <div class="field">
+              <label for="fbName">Name <span class="optional">(optional)</span></label>
+              <input type="text" id="fbName" name="name" maxlength="80" placeholder="How should we credit you?" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="fbMessage">Your feedback</label>
+              <textarea id="fbMessage" name="message" rows="4" maxlength="1000" required placeholder="What worked, what didn't, what you'd add…"></textarea>
+            </div>
+            <div class="field rating-field">
+              <span class="rating-label">Rating <span class="optional">(optional)</span></span>
+              <div class="rating-input" role="radiogroup" aria-label="Rating">
+                <input type="radio" id="r5" name="rating" value="5"><label for="r5" title="5 stars">★</label>
+                <input type="radio" id="r4" name="rating" value="4"><label for="r4" title="4 stars">★</label>
+                <input type="radio" id="r3" name="rating" value="3"><label for="r3" title="3 stars">★</label>
+                <input type="radio" id="r2" name="rating" value="2"><label for="r2" title="2 stars">★</label>
+                <input type="radio" id="r1" name="rating" value="1"><label for="r1" title="1 star">★</label>
+              </div>
+            </div>
+            <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button type="submit" class="btn-primary">Send feedback</button>
+            <p class="form-status" id="feedbackStatus" role="status"></p>
+          </form>
+        </div>
+      </section>
     </div>
   </div>
 </main>
