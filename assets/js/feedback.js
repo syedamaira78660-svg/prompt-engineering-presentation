@@ -54,7 +54,7 @@
         return (
           '<div class="feedback-card">' +
           renderStars(item.rating) +
-          '<p class="feedback-message">“' + escapeHtml(item.message) + "”</p>" +
+          '<p class="feedback-message">' + escapeHtml(item.message) + "</p>" +
           '<p class="feedback-meta">' +
           escapeHtml(item.name || "Anonymous") +
           (dateStr ? " · " + dateStr : "") +
