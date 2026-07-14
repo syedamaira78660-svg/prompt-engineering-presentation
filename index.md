@@ -28,5 +28,4 @@ Use the sidebar to explore the presentation sections:
 3. **[The 5 Golden Rules](./golden-rules.md)**
 4. **[Techniques](./techniques.md)**
 5. **[Context Placement in Prompt Engineering](./context-placement-v2.md)**
-6. **[Interactive Examples](./examples.md)** - Direct "Before vs. After" prompt breakdowns.
 7. **[Resources](./resources.md)** - Templates, bookmarks, and further reading.
