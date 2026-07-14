@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompting Techniques — Order It Right</title>
+<meta name="description" content="Standard, zero-shot, one-shot, and few-shot prompting, compared side by side with full examples.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%BD%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/nav-data.js" defer></script>
+<script src="../assets/js/layout.js" defer></script>
+<script src="../assets/js/main.js" defer></script>
+</head>
+<body data-slug="techniques">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress-bar" id="progressBar"></div>
+<header id="siteHeader"></header>
+<div class="shell">
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="content" id="main">
+    <article>
+      <p class="eyebrow">Chapter 05 · Ways to Order</p>
+      <h1>Prompting Techniques</h1>
+      <p class="dek">The same request — build a prompt library app — gets progressively more complete and consistent as you move from standard prompting through zero-shot, one-shot, and few-shot.</p>
+
+      <h2 id="standard">1. Standard Prompting</h2>
+      <p>Standard prompting is the simplest way to interact with an AI model.</p>
+      <div class="ticket">
+        <div class="ticket-head"><span>order — standard</span><button class="copy-btn">Copy</button></div>
+        <pre>Create a prompt library application that lets users save and delete prompts.
+
+Users should be able to:
+- Enter a title and content for their prompt
+- Save it to localStorage
+- See all their saved prompts displayed on the page
+- Delete prompts they no longer need
+
+Make it look clean and professional with HTML, CSS, and JavaScript.</pre>
+      </div>
+
+      <h2 id="zero-shot">2. Zero-Shot Prompting</h2>
+      <p>Zero-shot prompting provides detailed instructions without examples.</p>
+      <div class="ticket">
+        <div class="ticket-head"><span>order — zero-shot</span><button class="copy-btn">Copy</button></div>
+        <pre>Create a prompt library application in HTML, CSS, and JavaScript.
+
+Create an HTML page with a form containing fields for the prompt title and content
+
+Add a save prompt button that saves to localStorage
+
+Display saved prompts in cards
+
+Each prompt card should show the title, a content preview of a few words, and a delete button
+
+Deleting should remove the prompt from localStorage and update the display
+
+Style it with CSS to look clean and modern with a developer theme
+
+Include all HTML structure, CSS styling, and JavaScript functionality in their own files, but that can be run immediately and includes no other features.</pre>
+      </div>
+
+      <h2 id="one-shot">3. One-Shot Prompting</h2>
+      <p>Provide exactly one example before the actual task.</p>
+      <div class="callout">
+        <span class="callout-label">Notes</span>
+        <ul style="margin:0;">
+          <li>Choose your example carefully — it sets the pattern.</li>
+          <li>Make your example the majority representative; don't pick an edge case.</li>
+          <li>Include all elements you want in your output.</li>
+          <li>Combine with explicit instructions for any additional clarity you need.</li>
+          <li>Don't overcomplicate your example to cover every case — the model will generalize the pattern.</li>
+        </ul>
+      </div>
+      <div class="ticket">
+        <div class="ticket-head"><span>order — one-shot</span><button class="copy-btn">Copy</button></div>
+        <pre>Write an engaging introduction for a blog post about remote work productivity.
+
+Example:
+Topic: Benefits of morning exercise
+Introduction: "Picture this: It's 6 AM, your alarm goes off, and instead of hitting snooze, you lace up your sneakers. Sound impossible? Here's the thing—those who exercise before breakfast report 23% higher energy levels throughout their workday. But the real secret isn't just the exercise itself; it's what happens to your brain chemistry in those precious morning hours."
+
+Now write an introduction for: Remote work productivity tips</pre>
+      </div>
+
+      <p>Something we can add to our prompt library is a rating feature, with stars from 1–5. Here's an example of a one-shot prompt to get the model to design that new feature.</p>
+      <div class="callout note">
+        <span class="callout-label">Note</span>
+        <p>You will likely need to prompt the model again to build the feature after sending this prompt. This prompt uses an example to help the model "architect" the feature. Go through what it wants to build, prompt to make any adjustments you see fit, and then prompt the model to "build this feature."</p>
+      </div>
+      <div class="ticket">
+        <div class="ticket-head"><span>order — one-shot, feature design</span><button class="copy-btn">Copy</button></div>
+        <pre>You are helping develop a prompt library application. Here's an example of how to analyze and implement a new feature:
+
+**EXAMPLE:** Feature Request: "Add a favorites/bookmarking system"
+
+Implementation Plan:
+
+1. **User Story**: As a user, I want to mark prompts as favorites so I can quickly access my most-used prompts without scrolling through the entire library.
+2. **Technical Requirements**:
+    - Add a heart/bookmark icon to each prompt card
+    - Store favorite status in localStorage or database
+    - Create a filter to show only favorited prompts
+    - Visual indicator when a prompt is favorited (filled vs outlined icon)
+3. **Code Structure**:
+
+// Data model update
+prompt = {
+  id: 'prompt-123',
+  title: 'Marketing Email Generator',
+  content: '...',
+  isFavorite: false,  // New field
+  createdAt: '2024-01-15',
+  rating: 4.5
+}
+
+// Toggle favorite function
+function toggleFavorite(promptId) {
+  const prompt = prompts.find(p => p.id === promptId);
+  prompt.isFavorite = !prompt.isFavorite;
+  saveToStorage(prompts);
+  updateUI();
+}
+
+4. **UI/UX Considerations**:
+    - Place favorite icon in consistent location (top-right of card)
+    - Use intuitive icons (heart or star)
+    - Provide visual feedback on click (animation/color change)
+    - Add "Favorites" filter tab in navigation
+
+---
+
+**YOUR TASK:** Analyze the following feature request using the EXACT same format as the example above (User Story, Technical Requirements with bullet points, Code Structure with JavaScript examples, and UI/UX Considerations).
+
+Feature Request: "Add a 5-star rating component to rate prompt effectiveness"</pre>
+      </div>
+
+      <h2 id="few-shot">4. Few-Shot Prompting</h2>
+      <p>Provide multiple examples so the model learns the desired pattern.</p>
+      <div class="callout">
+        <span class="callout-label">Notes</span>
+        <ul style="margin:0;">
+          <li>Diversity in examples matters.</li>
+          <li>Include edge cases and failure cases.</li>
+          <li>Keep examples concise but complete.</li>
+          <li>Test in a few different chats with a few different numbers of examples to find what works best.</li>
+        </ul>
+      </div>
+      <div class="ticket">
+        <div class="ticket-head"><span>order — few-shot</span><button class="copy-btn">Copy</button></div>
+        <pre>I need you to create a prompt for implementing a new feature. Here are examples of effective feature implementation prompts:
+
+**EXAMPLE 1: Save/Delete Functionality Prompt**
+Create a save and delete system for a prompt library application with the following requirements:
+
+Technical Specifications:
+- Save button that persists prompts to localStorage
+- Delete button with confirmation dialog before removal
+- Visual feedback on successful save (green checkmark animation)
+- Trash icon with hover effect for delete action
+- Auto-save indicator when changes are detected
+
+Provide complete HTML, CSS, and JavaScript with:
+1. Semantic HTML with data attributes for prompt IDs
+2. CSS animations for save confirmation and delete hover states
+3. JavaScript with proper event delegation for dynamically added prompts
+4. localStorage integration with JSON serialization
+
+The system should work with this data structure:
+const prompts = [
+  { id: 'prompt-001', title: "Blog Writer", content: "Generate blog posts...", savedAt: Date.now() }
+];
+
+Include error handling for localStorage quota exceeded and implement a "Recently Deleted" temporary storage (up to 5 items).
+
+**EXAMPLE 2: Star Rating Component Prompt**
+Build a 5-star rating system for rating prompt effectiveness with these specifications:
+
+Core Requirements:
+- Interactive 5-star display (click to rate, hover to preview)
+- Half-star precision (4.5 stars possible)
+- Shows average rating and total number of ratings
+- Updates immediately without page refresh
+- Allows users to change their rating
+
+Implementation Details:
+- SVG stars for crisp display at any size
+- Gold fill for rated, gray outline for unrated
+- Smooth hover animations (scale and glow effect)
+- Display format: "4.5 ★ (23 ratings)"
+
+Deliver production-ready code including:
+1. HTML with accessible ARIA labels for screen readers
+2. CSS with star animations and responsive sizing
+3. JavaScript for rating logic and state management
+4. Comments explaining calculation methods
+
+Data model to support:
+{
+  promptId: 'prompt-001',
+  ratings: [5, 4, 5, 3, 5], // Array of all ratings
+  userRating: 4, // Current user's rating
+  averageRating: 4.4
+}
+
+**YOUR TASK:** Based on the examples above, create a detailed prompt for building a "notes section" feature where users can add, edit, save, and delete notes for each prompt in the library.
+
+The prompt should follow the pattern shown in the examples:
+
+- Clear feature description
+- Specific technical requirements
+- Implementation details
+- Expected deliverables
+- Data structure/integration notes
+
+Keep it as simple as possible to create a working notes section with only the features mentioned in your task.</pre>
+      </div>
+
+      <h2 id="comparison">Comparison</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Technique</th><th>Examples</th><th>Best For</th></tr></thead>
+          <tbody>
+            <tr><td>Standard</td><td>None</td><td>Quick/simple tasks</td></tr>
+            <tr><td>Zero-Shot</td><td>None</td><td>Detailed instructions</td></tr>
+            <tr><td>One-Shot</td><td>One</td><td>Matching a style or structure</td></tr>
+            <tr><td>Few-Shot</td><td>Multiple</td><td>Complex, consistent outputs</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout note">
+        <span class="callout-label">Tip</span>
+        <p>Notice how the same "Prompt Manager" application becomes increasingly complete and consistent as more guidance and examples are provided.</p>
+      </div>
+
+      <div class="callout note">
+        <span class="callout-label">Up Next</span>
+        <p>Where you put these instructions matters as much as what they say. Next: <strong>Context Placement</strong>.</p>
+      </div>
+    </article>
+    <div id="pageNav"></div>
+  </main>
+  <aside id="toc" class="toc"></aside>
+</div>
+<footer id="siteFooter"></footer>
+</body>
+</html>

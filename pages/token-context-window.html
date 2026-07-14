@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Token Limits & Context Windows — Order It Right</title>
+<meta name="description" content="What a token actually is, what a context window is, and what the AI quietly forgets when it runs out of room.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%BD%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/nav-data.js" defer></script>
+<script src="../assets/js/layout.js" defer></script>
+<script src="../assets/js/main.js" defer></script>
+</head>
+<body data-slug="token-context-window">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress-bar" id="progressBar"></div>
+<header id="siteHeader"></header>
+<div class="shell">
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="content" id="main">
+    <article>
+      <p class="eyebrow">Chapter 03 · Kitchen Capacity</p>
+      <h1>Token Limits and Context Windows</h1>
+      <p class="dek">Before we start writing prompts, it's important to understand <strong>tokens</strong> and the <strong>context window</strong>, because they determine how much information an AI model can process and remember during a conversation.</p>
+
+      <h2 id="what-is-a-token">What is a Token?</h2>
+      <p>A <strong>token</strong> is the basic unit of text processed by a Large Language Model (LLM). Tokens are <strong>not the same as words or characters</strong>. Instead, they are pieces of text created by a <strong>tokenizer</strong>, which breaks text into efficient units that the model can understand.</p>
+      <p>Depending on the text, a token can represent:</p>
+      <ul>
+        <li>A complete word</li>
+        <li>Part of a word</li>
+        <li>A punctuation mark</li>
+        <li>A number</li>
+        <li>A symbol</li>
+        <li>Whitespace</li>
+        <li>Special characters</li>
+      </ul>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Text</th><th>Possible Tokenization</th></tr></thead>
+          <tbody>
+            <tr><td><code>Hello</code></td><td><code>["Hello"]</code></td></tr>
+            <tr><td><code>engineering</code></td><td><code>["engine", "ering"]</code></td></tr>
+            <tr><td><code>can't</code></td><td><code>["can", "'t"]</code></td></tr>
+            <tr><td><code>12345</code></td><td>May be one or more tokens</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout note">
+        <span class="callout-label">Note</span>
+        <p>The exact tokenization depends on the tokenizer used by the model. Different AI models may tokenize the same text differently.</p>
+      </div>
+
+      <h2 id="tokens-are-not-words">Tokens Are Not Words</h2>
+      <p>Many beginners assume <strong>1 word = 1 token</strong>. This is <strong>not true</strong>. Likewise, <strong>1 character = 1 token</strong> is also incorrect.</p>
+      <p>Instead, the tokenizer breaks text into pieces based on patterns learned from large amounts of text. For example:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Text</th><th>Characters</th><th>Tokens</th></tr></thead>
+          <tbody>
+            <tr><td><code>Hello</code></td><td>5</td><td>1</td></tr>
+            <tr><td><code>Helbo</code></td><td>5</td><td>2</td></tr>
+            <tr><td><code>OpenAI</code></td><td>—</td><td>Usually 1</td></tr>
+            <tr><td><code>OpenAI's</code></td><td>—</td><td>Usually 2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Notice that <strong>Hello</strong> and <strong>Helbo</strong> contain the same number of characters but have different token counts because <strong>Hello</strong> is a common word in the tokenizer's vocabulary, while <strong>Helbo</strong> is not. Common words are often represented as a single token, whereas uncommon or made-up words are split into smaller pieces.</p>
+
+      <h3 id="cumulative-tokens">Cumulative Tokens</h3>
+      <p>Every interaction with an LLM consumes tokens from multiple sources:</p>
+      <ul>
+        <li><strong>Input Tokens</strong> — your prompt or message.</li>
+        <li><strong>Output Tokens</strong> — the AI's generated response.</li>
+        <li><strong>Conversation History</strong> — previous user and assistant messages.</li>
+      </ul>
+      <div class="callout">
+        <span class="callout-label">Formula</span>
+        <p>Total Tokens = Input Tokens + Output Tokens + Conversation History</p>
+      </div>
+      <p>As the conversation grows, the cumulative token count increases.</p>
+
+      <h2 id="context-window">What is a Context Window?</h2>
+      <p>The <strong>context window</strong> is the maximum number of tokens an AI model can process and keep in its working memory for a single request.</p>
+      <p>Think of it as the model's <strong>short-term memory</strong>. Everything inside this window is available for the model to understand and generate its next response.</p>
+
+      <h3 id="whats-included">What is Included in the Context Window?</h3>
+      <p>The context window is shared by <strong>all information</strong> sent to the model, including:</p>
+      <ul>
+        <li><strong>System Prompt</strong> — hidden instructions that define the model's behavior and safety rules</li>
+        <li><strong>Developer Prompt</strong> — instructions provided by the application developer</li>
+        <li><strong>Conversation History</strong> — previous user and assistant messages</li>
+        <li><strong>Current User Prompt</strong></li>
+        <li><strong>Model Response</strong> — generated tokens</li>
+      </ul>
+
+      <pre class="plain">┌────────────────────────────────────────────┐
+│             Context Window                  │
+├────────────────────────────────────────────┤
+│ System Prompt (Hidden)                      │
+│ Developer Prompt                            │
+│ Previous Conversation                       │
+│ Current User Prompt                         │
+│ Model Response                              │
+└────────────────────────────────────────────┘</pre>
+
+      <div class="callout note">
+        <span class="callout-label">Example</span>
+        <p>When you use <strong>Claude</strong>, <strong>ChatGPT</strong>, or <strong>Gemini</strong>, each platform includes its own hidden system prompt. If you're using their APIs, you can also provide your own developer or system instructions. All of these consume part of the available context window.</p>
+      </div>
+
+      <h2 id="limit-reached">What Happens When the Limit is Reached?</h2>
+      <p>When the context window becomes full:</p>
+      <ul>
+        <li>The <strong>oldest messages are automatically removed</strong>.</li>
+        <li>Earlier instructions are no longer available to the model.</li>
+        <li>The model may forget previous requirements or lose important context.</li>
+        <li>This happens <strong>silently</strong> — the user typically isn't notified.</li>
+      </ul>
+
+      <h2 id="why-it-matters">Why It Matters in Prompt Engineering</h2>
+      <p>To build reliable AI applications:</p>
+      <ul>
+        <li>Keep prompts <strong>clear and concise</strong>.</li>
+        <li>Include <strong>only relevant context</strong>.</li>
+        <li>Remove unnecessary conversation history.</li>
+        <li>Summarize long conversations instead of sending everything again.</li>
+        <li>Use techniques like <strong>Retrieval-Augmented Generation (RAG)</strong> to retrieve only the information needed for each request.</li>
+      </ul>
+
+      <h2 id="key-takeaways">Key Takeaways</h2>
+      <ul>
+        <li>Tokens are the units an LLM processes.</li>
+        <li>Every request consumes <strong>input</strong>, <strong>output</strong>, and <strong>history</strong> tokens.</li>
+        <li>The context window is the model's <strong>working memory</strong>.</li>
+        <li>System prompts, developer prompts, conversation history, user prompts, and responses all share the same context window.</li>
+        <li>Once the token limit is reached, the <strong>oldest context is discarded</strong>, which can affect response quality.</li>
+        <li>Managing context efficiently is one of the most important skills in prompt engineering.</li>
+      </ul>
+
+      <div class="callout note">
+        <span class="callout-label">Up Next</span>
+        <p>Now that you know how much room you have to work with, let's fill it properly. Next: <strong>The 5 Golden Rules</strong>.</p>
+      </div>
+    </article>
+    <div id="pageNav"></div>
+  </main>
+  <aside id="toc" class="toc"></aside>
+</div>
+<footer id="siteFooter"></footer>
+</body>
+</html>

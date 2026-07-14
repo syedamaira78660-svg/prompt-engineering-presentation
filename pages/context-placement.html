@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context Placement — Order It Right</title>
+<meta name="description" content="Why LLMs get lost in the middle of a long prompt, and how to structure prompts so nothing important gets skipped.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%BD%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/nav-data.js" defer></script>
+<script src="../assets/js/layout.js" defer></script>
+<script src="../assets/js/main.js" defer></script>
+</head>
+<body data-slug="context-placement">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress-bar" id="progressBar"></div>
+<header id="siteHeader"></header>
+<div class="shell">
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="content" id="main">
+    <article>
+      <p class="eyebrow">Chapter 06 · Plating Matters</p>
+      <h1>Context Placement in Prompt Engineering</h1>
+      <p class="dek">The effectiveness of a prompt depends not only on <strong>what information you provide</strong>, but also <strong>where you place it</strong>. LLMs don't treat every part of a long prompt equally — they often show a <strong>positional bias</strong>, paying more attention to the <strong>beginning</strong> and <strong>end</strong> of a prompt than to the middle.</p>
+      <p>This is commonly known as the <strong>"Lost in the Middle"</strong> phenomenon.</p>
+
+      <h2 id="key-insight">Key Insight</h2>
+      <blockquote><p>The position of important information within a prompt can significantly affect an LLM's ability to retrieve, retain, and use that information.</p></blockquote>
+      <p>In many current LLMs, important information is used most effectively when it appears near the beginning of the prompt, followed by the end. Information placed in the middle of long prompts is more likely to be overlooked.</p>
+      <pre class="plain">Beginning  >  End  >  Middle</pre>
+      <div class="callout note"><span class="callout-label">Note</span><p>This is a general trend observed in many modern LLMs — not an absolute rule. Performance varies depending on the model, prompt design, and task.</p></div>
+
+      <h2 id="lost-in-the-middle">The "Lost in the Middle" Effect</h2>
+      <p>The paper <strong>"Lost in the Middle: How Language Models Use Long Contexts"</strong> (Liu et al., 2023) evaluated several state-of-the-art language models by placing the same relevant information at different positions within long prompts.</p>
+      <h3 id="key-findings">Key Findings</h3>
+      <ul>
+        <li>Information placed at the <strong>beginning</strong> of a prompt was retrieved most accurately.</li>
+        <li>Information placed at the <strong>end</strong> of a prompt also achieved strong retrieval performance due to recency.</li>
+        <li>Information located in the <strong>middle</strong> of long prompts was significantly more likely to be overlooked.</li>
+        <li>Simply increasing the context window (for example, 32K, 100K, or more tokens) does <strong>not</strong> guarantee that the model will effectively use information throughout the entire context.</li>
+        <li>Longer prompts can reduce retrieval accuracy when important information is poorly positioned or surrounded by irrelevant content.</li>
+      </ul>
+
+      <h2 id="why-it-matters">Why Does This Matter?</h2>
+      <p>Modern AI applications often use long prompts containing conversation history, retrieved documents, code, or datasets. If important instructions or facts are buried in the middle of this context, the model may not use them effectively. Poor context placement can lead to:</p>
+      <ul>
+        <li>Ignoring important instructions</li>
+        <li>Missing relevant information</li>
+        <li>Incomplete or incorrect responses</li>
+        <li>Reduced reasoning quality</li>
+        <li>Hallucinations caused by overlooked supporting evidence</li>
+      </ul>
+      <p>Organizing prompts effectively can improve response quality without changing the model itself.</p>
+
+      <h2 id="best-practices">Best Practices</h2>
+
+      <h3 id="primary-first">✅ Place Primary Instructions First</h3>
+      <p>Clearly state the main objective at the beginning of the prompt.</p>
+      <div class="swap">
+        <div class="yes"><span class="label">Good</span><pre>Summarize the following research paper.
+
+&lt;Research Paper Content&gt;</pre></div>
+        <div class="no"><span class="label">Less Effective</span><pre>&lt;Research Paper Content&gt;
+
+Summarize the paper.</pre></div>
+      </div>
+
+      <h3 id="context-near-beginning">✅ Put Important Context Near the Beginning</h3>
+      <p>Present the most relevant facts, constraints, or reference information before lengthy supporting material.</p>
+      <div class="ticket">
+        <div class="ticket-head"><span>example</span><button class="copy-btn">Copy</button></div>
+        <pre>Role:
+You are a cybersecurity expert.
+
+Objective:
+Explain the vulnerability.
+
+Reference Material:
+...</pre>
+      </div>
+
+      <h3 id="reinforce-constraints">✅ Reinforce Critical Constraints Near the End</h3>
+      <p>For long prompts, repeat important formatting or behavioral requirements near the end.</p>
+      <div class="ticket">
+        <div class="ticket-head"><span>example</span><button class="copy-btn">Copy</button></div>
+        <pre>Remember:
+- Respond only in JSON.
+- Do not include explanations.</pre>
+      </div>
+      <p>This helps keep critical instructions prominent even after processing a large amount of context.</p>
+
+      <h3 id="order-rag-docs">✅ Order Retrieved Documents by Relevance (RAG)</h3>
+      <p>In Retrieval-Augmented Generation (RAG), arrange retrieved documents strategically.</p>
+      <pre class="plain">Most Relevant Document
+Supporting Document
+Additional Context</pre>
+      <p>Avoid placing the most relevant document in the middle of numerous less relevant documents whenever possible.</p>
+
+      <h3 id="keep-focused">✅ Keep Prompts Focused</h3>
+      <p>Avoid including unnecessary context simply because the model supports a large context window. A shorter, well-structured prompt is often more effective than a longer, cluttered one.</p>
+
+      <h2 id="practical-applications">Practical Applications</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Use Case</th><th>Placement Guidance</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Chatbots</strong></td><td>Place system instructions at the beginning; reinforce important behavioral rules during long conversations.</td></tr>
+            <tr><td><strong>Retrieval-Augmented Generation</strong></td><td>Rank retrieved documents by relevance; place the most relevant documents first (or reinforce key information near the end).</td></tr>
+            <tr><td><strong>Document Q&amp;A</strong></td><td>Present the most relevant sections before supporting material.</td></tr>
+            <tr><td><strong>Code Generation</strong></td><td>Place coding requirements and constraints before large code snippets.</td></tr>
+            <tr><td><strong>Summarization</strong></td><td>State the summarization task before the document rather than after it.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="recommended-structure">Recommended Prompt Structure</h2>
+      <pre class="plain">1. System Role or Objective
+2. Primary Instructions
+3. Important Context
+4. Supporting Information
+5. Examples (if needed)
+6. Final Reminder or Constraints</pre>
+      <p>This structure aligns well with how many current LLMs process long prompts.</p>
+
+      <h2 id="key-takeaways">Key Takeaways</h2>
+      <ul>
+        <li>The position of information within a prompt can significantly influence model performance.</li>
+        <li>Many LLMs retrieve information more effectively from the beginning and end of long prompts than from the middle.</li>
+        <li>Avoid burying critical instructions or key facts within lengthy contexts.</li>
+        <li>Organize prompts so that essential information appears early, and reinforce important constraints near the end when appropriate.</li>
+        <li>Larger context windows increase capacity but do not guarantee that every part of the prompt receives equal attention.</li>
+      </ul>
+
+      <h2 id="reference">Reference</h2>
+      <p>Liu, N. F., et al. (2023). <strong>Lost in the Middle: How Language Models Use Long Contexts.</strong><br>
+      <a href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener">arxiv.org/abs/2307.03172</a></p>
+
+      <div class="callout note">
+        <span class="callout-label">Up Next</span>
+        <p>Time to put all five rules to the test. Next: <strong>Interactive Examples</strong>.</p>
+      </div>
+    </article>
+    <div id="pageNav"></div>
+  </main>
+  <aside id="toc" class="toc"></aside>
+</div>
+<footer id="siteFooter"></footer>
+</body>
+</html>

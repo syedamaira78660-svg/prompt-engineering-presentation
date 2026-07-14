@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Examples — Order It Right</title>
+<meta name="description" content="Before and after prompt case studies you can toggle through: coding, writing, and business analysis.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%BD%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/nav-data.js" defer></script>
+<script src="../assets/js/layout.js" defer></script>
+<script src="../assets/js/main.js" defer></script>
+</head>
+<body data-slug="examples">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="progress-bar" id="progressBar"></div>
+<header id="siteHeader"></header>
+<div class="shell">
+  <nav id="sidebar" class="sidebar"></nav>
+  <main class="content" id="main">
+    <article>
+      <p class="eyebrow">Chapter 07 · Taste Test</p>
+      <h1>What You Ordered vs. What You Meant</h1>
+      <p class="dek">Three orders, the naive way they usually get placed, and the engineered version that actually gets you what you wanted. Click "Show the improved order" on each to reveal it — notice which Golden Rule each addition demonstrates.</p>
+
+      <section class="case">
+        <div class="case-head">
+          <p class="eyebrow">Case Study 1 · Technical &amp; Coding Tasks</p>
+          <h3>Scraping a website</h3>
+          <p>The naive version usually needs 3–4 follow-up prompts to fix bugs, add error handling, and stop assuming a perfect environment.</p>
+        </div>
+        <div class="case-order">
+          <div class="ticket">
+            <div class="ticket-head"><span>what you ordered</span><button class="copy-btn">Copy</button></div>
+            <pre>Write a python script to scrape a website.</pre>
+          </div>
+          <p class="case-note">Resulting AI behavior: basic, un-commented code, no error handling, assumes a perfect environment.</p>
+          <button class="reveal-btn" aria-controls="case1-after" aria-expanded="false">Show the improved order ▼</button>
+        </div>
+        <div class="case-after" id="case1-after">
+          <div class="ticket">
+            <div class="ticket-head"><span>what you meant</span><button class="copy-btn">Copy</button></div>
+            <pre>Act as a senior Python developer experienced in web scraping and data pipelines.
+
+Write a Python script that scrapes article titles and publish dates from a news website's homepage.
+
+I'll run this locally with Python 3.11 and can install packages via pip. The site uses static HTML — no JavaScript rendering needed.
+
+Use requests and BeautifulSoup only. Respect robots.txt. Handle network errors and missing elements gracefully. Add a 1-second delay between requests if scraping multiple pages.
+
+Deliver a single .py file with inline comments, plus a short usage example at the bottom.</pre>
+          </div>
+          <div class="tag-row">
+            <span class="tag role">Role · senior Python developer</span>
+            <span class="tag task">Task · scrape titles + dates</span>
+            <span class="tag context">Context · Python 3.11, static HTML</span>
+            <span class="tag constraints">Constraints · robots.txt, error handling</span>
+            <span class="tag format">Format · single commented .py file</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="case">
+        <div class="case-head">
+          <p class="eyebrow">Case Study 2 · Content &amp; Writing Tasks</p>
+          <h3>A blog post about productivity</h3>
+          <p>The naive version reads like every other "5 tips to be more productive" listicle on the internet.</p>
+        </div>
+        <div class="case-order">
+          <div class="ticket">
+            <div class="ticket-head"><span>what you ordered</span><button class="copy-btn">Copy</button></div>
+            <pre>Write a blog post about productivity.</pre>
+          </div>
+          <p class="case-note">Resulting AI behavior: clichés, generic bullet points, no clear audience or voice.</p>
+          <button class="reveal-btn" aria-controls="case2-after" aria-expanded="false">Show the improved order ▼</button>
+        </div>
+        <div class="case-after" id="case2-after">
+          <div class="ticket">
+            <div class="ticket-head"><span>what you meant</span><button class="copy-btn">Copy</button></div>
+            <pre>Act as a productivity coach who writes for early-career software engineers.
+
+Write a 600-word blog post titled "Why Your To-Do List Is Lying to You," arguing that time-blocking beats task lists for deep work.
+
+My audience is junior developers who feel busy but unproductive, juggling Slack, meetings, and coding.
+
+Use a conversational tone, no corporate jargon. Include one concrete example from a typical dev's day. Avoid generic "wake up at 5am" advice.
+
+Format as a Markdown blog post with a hook opening line, three subheadings, and a one-line takeaway at the end.</pre>
+          </div>
+          <div class="tag-row">
+            <span class="tag role">Role · productivity coach</span>
+            <span class="tag task">Task · 600-word post, specific angle</span>
+            <span class="tag context">Context · audience = junior devs</span>
+            <span class="tag constraints">Constraints · tone, no clichés</span>
+            <span class="tag format">Format · Markdown, 3 subheadings</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="case">
+        <div class="case-head">
+          <p class="eyebrow">Case Study 3 · Data &amp; Business Analysis</p>
+          <h3>Diagnosing a sales drop</h3>
+          <p>The naive version produces vague commentary that never actually references your numbers.</p>
+        </div>
+        <div class="case-order">
+          <div class="ticket">
+            <div class="ticket-head"><span>what you ordered</span><button class="copy-btn">Copy</button></div>
+            <pre>Analyze this sales data and tell me what's wrong.</pre>
+          </div>
+          <p class="case-note">Resulting AI behavior: "sales seem to be declining" — generic, no structure, no actionable recommendation.</p>
+          <button class="reveal-btn" aria-controls="case3-after" aria-expanded="false">Show the improved order ▼</button>
+        </div>
+        <div class="case-after" id="case3-after">
+          <div class="ticket">
+            <div class="ticket-head"><span>what you meant</span><button class="copy-btn">Copy</button></div>
+            <pre>Act as a senior business analyst who specializes in retail sales trends.
+
+Analyze the attached quarterly sales data and identify the top 3 factors likely driving the 12% revenue drop in Q3.
+
+We're a mid-size e-commerce company selling home goods. Q3 included a pricing change and a shipping delay in August.
+
+Base conclusions only on the provided data, and flag any assumptions explicitly. Keep it under 400 words.
+
+Present the findings as a Markdown table (Factor, Evidence, Confidence) followed by 3 recommended next steps.</pre>
+          </div>
+          <div class="tag-row">
+            <span class="tag role">Role · senior business analyst</span>
+            <span class="tag task">Task · find top 3 drivers</span>
+            <span class="tag context">Context · pricing change, shipping delay</span>
+            <span class="tag constraints">Constraints · data-only, 400 words</span>
+            <span class="tag format">Format · table + next steps</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="callout note">
+        <span class="callout-label">Try it yourself</span>
+        <p>Copy any "what you ordered" ticket above into ChatGPT, Claude, or Gemini, then paste the "what you meant" version in a fresh chat. Compare the two responses side by side.</p>
+      </div>
+
+      <div class="callout note">
+        <span class="callout-label">Up Next</span>
+        <p>Last stop: a couple of tools worth bookmarking. Next: <strong>Resources</strong>.</p>
+      </div>
+    </article>
+    <div id="pageNav"></div>
+  </main>
+  <aside id="toc" class="toc"></aside>
+</div>
+<footer id="siteFooter"></footer>
+</body>
+</html>
